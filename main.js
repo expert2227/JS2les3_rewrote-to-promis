@@ -1,20 +1,3 @@
-// переписать на промис (!!!!!!!не fetch !!!!!!!!!!)
-// Далее НЕ ИСПОЛЬЗОВАТЬ В КОДЕ!
-// let getRequest = (url, cb) => {
-//   let xhr = new XMLHttpRequest();
-//   xhr.open('GET', url, true);
-//   xhr.onreadystatechange = () => {
-//     if (xhr.readyState === 4) {
-//       if (xhr.status !== 200) {
-//         console.log('Error');
-//       } else {
-//         cb(xhr.responseText);
-//       }
-//     }
-//   };
-//   xhr.send();
-// };
-// ---------------------------------
 const getRequest = (url) => {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
@@ -32,25 +15,6 @@ const getRequest = (url) => {
   })
 };
 
-
-// const getRequest = (url) => {
-//   
-//   return new Promise((resolve, reject) => { // resolve -> then, reject -> catch
-//       setTimeout(() => {
-//           if (a) resolve(20);
-//           else reject('No data');
-//       }, 1500);
-//   });
-// };
-
-// num()
-//     .then((data) => { // resolve
-//         console.log(data);
-//     })
-//     .catch((err) => { // reject
-//         console.log(err);
-//     });
-
 class ProductList {
   constructor(container = '.products', api = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses') {
     this.container = document.querySelector(container);
@@ -59,12 +23,6 @@ class ProductList {
     this.api = api;
     this.fetchGoods();
     this.render();
-
-    // this.getProducts()
-    //     .then((data) => {
-    //       this.goods = data;
-    //       this.render();
-    //     });
   }
 
   fetchGoods() {
@@ -77,12 +35,6 @@ class ProductList {
       console.log('произошла ошибка при загрузке данных')
     });
   }
-
-  // getProducts() {
-  //   return fetch(`${API}/catalogData.json`)
-  //       .then(response => response.json())
-  //       .catch(err => console.log(err));
-  // }
 
   render() {
     for (const good of this.goods) {
